@@ -1,6 +1,10 @@
-#include <boost/python.hpp>
-#include "boost/python/extract.hpp"
-#include "boost/python/numeric.hpp"
+// #include <boost/python.hpp>
+// #include "boost/python/extract.hpp"
+// #include "boost/python/numeric.hpp"
+#include <pybind11/pybind11.h>
+#include <pybind11/numpy.h>
+
+
 #include <numpy/ndarrayobject.h>
 #include <iostream>
 #include <string>
@@ -12,7 +16,7 @@
 #include "Image.h"
 #include "ImageIO.h"
 
-using namespace boost::python;
+namespace py = pybind11;
 using namespace std;
 class ErsPy {
 public:
@@ -21,7 +25,7 @@ public:
 	double sigma_;
 	void SetLambda(double lambda) { lambda_ = lambda; };
 	void SetSigma(double sigma) { sigma_ = sigma; };
-	boost::python::object ComputeSegmentation(boost::python::numeric::array &inputImg, int nC) {
+	ComputeSegmentation(boost::python::numeric::array &inputImg, int nC) {
 		PyArrayObject* pyImg = (PyArrayObject*)PyArray_FROM_O(inputImg.ptr());
 		int rgbFlag = (pyImg->nd == 3) ? 1 : 0;
 		//std::cout << plim->nd;
@@ -56,19 +60,30 @@ public:
 		boost::python::handle<> handle(pyObj);
 		boost::python::numeric::array arr(handle);
 		delete[] out;
-		return boost::python::make_tuple(arr.copy());
+		return py::make_tuple(arr.copy());
 	}
 };
 
 
 
-BOOST_PYTHON_MODULE(erspy)
-{
+// BOOST_PYTHON_MODULE(erspy)
+// {
+// 	boost::python::numeric::array::set_module_and_type("numpy", "ndarray");
+// 	import_array();
+// 	class_<ErsPy>("ers")
+// 		.def("ComputeSegmentation", &ErsPy::ComputeSegmentation)
+// 		.def("SetSigma", &ErsPy::SetSigma)
+// 		.def("SetLambda", &ErsPy::SetLambda)
+// 		;
+// }
+
+PYBIND11_MODULE(erspy, m) {
 	boost::python::numeric::array::set_module_and_type("numpy", "ndarray");
 	import_array();
-	class_<ErsPy>("ers")
-		.def("ComputeSegmentation", &ErsPy::ComputeSegmentation)
+    
+    py::class_<ErsPy>(m, "ers")
+        .def("ComputeSegmentation", &ErsPy::ComputeSegmentation)
 		.def("SetSigma", &ErsPy::SetSigma)
 		.def("SetLambda", &ErsPy::SetLambda)
-		;
+        ;
 }
