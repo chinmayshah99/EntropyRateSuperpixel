@@ -80,7 +80,7 @@ public:
 PYBIND11_MODULE(erspy, m) {
 	// boost::python::numeric::array::set_module_and_type("numpy", "ndarray");
 	// import_array();
-    
+  
     py::class_<ErsPy>(m, "ers")
         .def("ComputeSegmentation", &ErsPy::ComputeSegmentation)
 		.def("SetSigma", &ErsPy::SetSigma)
