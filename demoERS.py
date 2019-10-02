@@ -1,4 +1,4 @@
-from erspy import *
+from erspy import ers
 import cv2
 import numpy as np
 
