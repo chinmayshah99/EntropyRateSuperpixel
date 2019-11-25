@@ -22,14 +22,15 @@ OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 
 // Entropy Rate Superpixel Segmentation
-#include "mex.h"
-#include "matrix.h"
-#include "MERCLazyGreedy.h"
-#include "MERCInputImage.h"
-#include "MERCOutputImage.h"
+#include "include/mex.h"
+#include "include/matrix.h"
+#include "include/MERCLazyGreedy.h"
+#include "include/MERCInputImage.h"
+#include "include/MERCOutputImage.h"
 
-#include "Image.h"
-#include "ImageIO.h"
+#include "include/Image.h"
+#include "include/ImageIO.h"
+
 #include <iostream>
 #include <string>
 

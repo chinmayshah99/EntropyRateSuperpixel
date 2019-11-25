@@ -5,16 +5,16 @@
 #include <pybind11/numpy.h>
 
 
-#include <numpy/ndarrayobject.h>
+// #include <numpy/ndarrayobject.h>
 #include <iostream>
 #include <string>
 #include <stdlib.h>
 
-#include "MERCLazyGreedy.h"
-#include "MERCInputImage.h"
-#include "MERCOutputImage.h"
-#include "Image.h"
-#include "ImageIO.h"
+#include <MERCLazyGreedy.h>
+#include <MERCInputImage.h>
+#include <MERCOutputImage.h>
+#include <Image.h>
+#include <ImageIO.h>
 
 namespace py = pybind11;
 using namespace std;

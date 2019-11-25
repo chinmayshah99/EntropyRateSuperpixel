@@ -20,7 +20,7 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
 AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING 
 OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
 */
-#include "MERCLazyGreedy.h"
+#include "include/MERCLazyGreedy.h"
 
 MERCDisjointSet* MERCLazyGreedy::ClusteringTree(int nVertices,MERCInput &edges,int kernel,double sigma,double lambda,int nC)
 {
