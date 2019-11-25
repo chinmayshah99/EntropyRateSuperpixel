@@ -5,3 +5,4 @@ vc/Debug/
 *.obj
 *.dll
 *.sdf
+build/
