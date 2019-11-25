@@ -25,8 +25,8 @@ public:
 	double sigma_;
 	void SetLambda(double lambda) { lambda_ = lambda; };
 	void SetSigma(double sigma) { sigma_ = sigma; };
-	ComputeSegmentation(py::array &inputImg, int nC) {
-		PyArrayObject* pyImg = (PyArrayObject*)PyArray_FROM_O(inputImg.ptr());
+	py::tuple ComputeSegmentation(py::array &inputImg, int nC) {
+		py::array<double>* pyImg = (PyArrayObject*)PyArray_FROM_O(inputImg.ptr());
 		int rgbFlag = (pyImg->nd == 3) ? 1 : 0;
 		//std::cout << plim->nd;
 		int height = *(pyImg->dimensions);
@@ -53,7 +53,7 @@ public:
 			for (int row = 0; row < height; row++)
 				out[col + row*width] = (float)label[col + row*width];
 		int ndims = 2;
-		npy_intp dims[2];
+		ssize_t dims[2];
 		//dims[0] = height; dims[1] = width; dims[2] = nDisp;
 		dims[0] = height; dims[1] = width;
 		PyObject * pyObj = PyArray_SimpleNewFromData(ndims, dims, NPY_FLOAT, out);
